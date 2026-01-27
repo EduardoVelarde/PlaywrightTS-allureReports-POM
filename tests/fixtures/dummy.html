@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dummy Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+      }
+      .message {
+        margin-top: 1rem;
+        font-weight: bold;
+      }
+      .error {
+        color: #b00020;
+      }
+      .success {
+        color: #1b5e20;
+      }
+      button {
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Página Dummy</h1>
+
+    <section>
+      <h2>Formulario simple</h2>
+      <label for="nameInput">Nombre:</label>
+      <input id="nameInput" type="text" placeholder="Ingresa tu nombre" />
+      <button id="submitBtn" type="button">Enviar</button>
+      <p id="formMessage" class="message"></p>
+    </section>
+
+    <section>
+      <h2>Contador</h2>
+      <p>Valor actual: <span id="counterValue">0</span></p>
+      <button id="incrementBtn" type="button">Incrementar</button>
+    </section>
+
+    <script>
+      const nameInput = document.getElementById('nameInput');
+      const submitBtn = document.getElementById('submitBtn');
+      const formMessage = document.getElementById('formMessage');
+      const counterValue = document.getElementById('counterValue');
+      const incrementBtn = document.getElementById('incrementBtn');
+
+      submitBtn.addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        if (!name) {
+          formMessage.textContent = 'El nombre es obligatorio.';
+          formMessage.className = 'message error';
+          return;
+        }
+
+        formMessage.textContent = `Hola, ${name}!`;
+        formMessage.className = 'message success';
+      });
+
+      incrementBtn.addEventListener('click', () => {
+        const current = Number(counterValue.textContent ?? 0);
+        counterValue.textContent = String(current + 1);
+      });
+    </script>
+  </body>
+</html>
