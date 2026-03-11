@@ -44,4 +44,23 @@ test.describe('Suite Dummy Page (POM)', () => {
     await expect(dummyPage.formMessage).toHaveText('El nombre es obligatorio.');
     await expect(dummyPage.formMessage).toHaveClass(/error/);
   });
+
+  test('@negativo muestra error si el nombre contiene solo espacios', async ({ page }) => {
+    const dummyPage = new DummyPage(page);
+    await dummyPage.goto();
+
+    await dummyPage.submitName('   ');
+
+    await expect(dummyPage.formMessage).toHaveText('El nombre es obligatorio.');
+    await expect(dummyPage.formMessage).toHaveClass(/error/);
+  });
+
+  test('@negativo no incrementa el contador al enviar el formulario', async ({ page }) => {
+    const dummyPage = new DummyPage(page);
+    await dummyPage.goto();
+
+    await dummyPage.submitName('Camila');
+
+    await expect(dummyPage.counterValue).toHaveText('0');
+  });
 });
