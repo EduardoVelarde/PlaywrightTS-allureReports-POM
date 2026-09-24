@@ -6,3 +6,8 @@ allure-report/
 
 # Playwright traces
 trace.zip
+
+# ReleaseReady static runner fixture evidence
+test-results/
+.env
+.env.*
